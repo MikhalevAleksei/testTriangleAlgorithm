@@ -142,10 +142,10 @@ class TestTriangle:
         expected_message = "XSS это плохо! Так не получится"
         assert expected_message in result, f"Expected {expected_message} got: {result}"
 
-
-
-#    @allure.label("Triangle Tests")
-#    @allure.label("Empty Form Submission")
-#    def test_empty_form_submission(driver):
-#        driver.find_element(By.ID, "submit_button").click()
-#        assert "Ошибка" in get_result_text(driver)
+    @allure.title("Проверяем невозможность создания треугольника  с нецелыми числами в полях значения сторон ")
+    def test_non_integer_input(self):
+        self.page.enter_sides(1.5, 2, 2.5)
+        self.page.click_button_after_wait_for_lost_fokus()
+        result = self.page.get_result()
+        expected_message = "Это прямоугольный треугольник"
+        assert expected_message in result, f"Expected {expected_message} got: {result}"
