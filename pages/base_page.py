@@ -17,7 +17,8 @@ class BasePage:
             ignored_exceptions=[NoSuchElementException, TimeoutException])
 
     def open(self):
-        self.driver.get(self.TRIANGLE_PAGE)
+        if self.driver.current_url != self.TRIANGLE_PAGE:  # Проверяем, находимся ли уже на нужной странице
+            self.driver.get(self.TRIANGLE_PAGE)
 
     def send_keys_in_input_field(self, locator, text):
         '''Очишает поле ввода и вносит значение '''
