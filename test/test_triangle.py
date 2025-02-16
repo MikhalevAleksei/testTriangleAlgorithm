@@ -23,6 +23,14 @@ class TestTriangle:
         expected_message = "Это равносторонний треугольник"
         assert expected_message in result, f"Expected {expected_message}, got: {result}"
 
+    @allure.title("Создаем равнобедренного треугольник со сторонами a=3, b=3, c=5")
+    def test_isosceles_triangle(self):
+        self.page.enter_sides(3, 3, 5)
+        self.page.click_button_after_wait_for_lost_fokus()
+        result = self.page.get_result()
+        expected_message = "Это равнобедренный треугольник"
+        assert expected_message in result, f"Expected {expected_message}, got: {result}"
+
     @allure.title("Создаем прямоугольный треугольник со сторонами a=3, b=4, c=5")
     def test_right_triangle(self):
         self.page.enter_sides(3, 4, 5)
@@ -55,7 +63,7 @@ class TestTriangle:
         expected_message = "Это НЕ треугольник"
         assert expected_message in result, f"Expected {expected_message}, got: {result}"
 
-    @allure.title("Проверяем невозможность создания треугольника со сторонами a=5, b=5, c=10")
+    @allure.title("Проверяем невозможность создания невозможноготреугольника со сторонами a=5, b=5, c=10")
     def test_impossible_triangle(self):
         self.page.enter_sides(1, 2, 10)
         self.page.click_button_after_wait_for_lost_fokus()
